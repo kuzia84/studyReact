@@ -36,7 +36,6 @@ const Login = styled.button`
   line-height: 19px;
   color: white;
   background: url(${loginImg}) 50% 0 no-repeat;
-  cursor: pointer;
 `;
 
 export const NavBar = () => (
