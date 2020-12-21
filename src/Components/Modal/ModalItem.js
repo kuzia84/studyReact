@@ -53,6 +53,7 @@ const TotalPriceItem = styled.div`
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   const counter = useCount();
+
   const closeModal = (e) => {
     if (e.target.id === "overlay") {
       setOpenItem(null);
@@ -77,7 +78,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
             <div>{openItem.name}</div>
             <div>{formatCurrency(openItem.price)}</div>
           </HeaderContent>
-          <CountItem counter={counter} />
+          <CountItem {...counter} />
           <TotalPriceItem>
             <span>Цена</span>
             <span>{formatCurrency(totalPriceItems(order))}</span>

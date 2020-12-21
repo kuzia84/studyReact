@@ -18,11 +18,7 @@ const ButtonCount = styled.button`
   border-color: #299b01;
 `;
 
-export function CountItem(counter) {
-  const { count, setCount, onChange } = counter;
-  console.log("count: ", count);
-  console.log("counter: ", counter);
-
+export function CountItem({ count, setCount, onChange }) {
   return (
     <CountWrapper>
       <span>Количество</span>

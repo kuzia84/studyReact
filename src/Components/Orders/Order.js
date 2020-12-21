@@ -46,6 +46,7 @@ export const Order = ({ orders }) => {
     (result, order) => result + totalPriceItems(order),
     0
   );
+
   return (
     <OrderStyled>
       <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
