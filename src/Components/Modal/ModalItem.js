@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { ButtonGreen } from "../Style/ButtonGreen";
+import { CountItem } from "./CountItem";
+import { useCount } from "../Hooks/useCount";
+import { totalPriceItems } from "../Functions/secondaryFunction";
+import { formatCurrency } from "../Functions/secondaryFunction";
 
 const Overlay = styled.div`
   position: fixed;
@@ -42,8 +46,13 @@ const HeaderContent = styled.div`
   color: #000000;
   font-family: "Pacifico", cursive;
 `;
+const TotalPriceItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+  const counter = useCount();
   const closeModal = (e) => {
     if (e.target.id === "overlay") {
       setOpenItem(null);
@@ -51,7 +60,9 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   };
   const order = {
     ...openItem,
+    count: counter.count,
   };
+
   const addToOrder = () => {
     setOrders([...orders, order]);
     setOpenItem(null);
@@ -64,13 +75,13 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         <Content>
           <HeaderContent>
             <div>{openItem.name}</div>
-            <div>
-              {openItem.price.toLocaleString("ru-RU", {
-                style: "currency",
-                currency: "RUB",
-              })}
-            </div>
+            <div>{formatCurrency(openItem.price)}</div>
           </HeaderContent>
+          <CountItem counter={counter} />
+          <TotalPriceItem>
+            <span>Цена</span>
+            <span>{formatCurrency(totalPriceItems(order))}</span>
+          </TotalPriceItem>
           <ButtonGreen type="button" onClick={addToOrder}>
             Добавить
           </ButtonGreen>
