@@ -21,6 +21,12 @@ const OrderItemStyled = styled.li`
 `;
 const ItemName = styled.span`
   flex-grow: 1;
+  max-width: 196px;
+`;
+const ItemTopping = styled.div`
+  font-size: 14px;
+  line-height: 16px;
+  color: #9a9a9a;
 `;
 const ItemPrice = styled.span`
   margin-left: 20px;
@@ -29,11 +35,23 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = ({ order }) => (
-  <OrderItemStyled>
-    <ItemName>{order.name}</ItemName>
-    <span>{order.count}</span>
-    <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-    <TrashButton />
-  </OrderItemStyled>
-);
+export const OrderListItem = ({ order }) => {
+  const selectedTopping =
+    order.topping &&
+    order.topping
+      .filter((item) => item.checked)
+      .map((item) => item.name)
+      .join(", ");
+
+  return (
+    <OrderItemStyled>
+      <ItemName>
+        {order.name}
+        <ItemTopping>{selectedTopping}</ItemTopping>
+      </ItemName>
+      <span>{order.count}</span>
+      <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
+      <TrashButton />
+    </OrderItemStyled>
+  );
+};
