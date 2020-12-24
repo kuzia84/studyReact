@@ -42,10 +42,11 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders, setOrders }) => {
+export const Order = ({ orders, setOrders, setOpenItem }) => {
   const deleteItem = (index) => {
-    const newOrder = [...orders];
-    newOrder.splice(index, 1);
+    // const newOrder = [...orders];
+    // newOrder.splice(index, 1);
+    const newOrder = orders.filter((item, i) => index !== i);
     setOrders(newOrder);
   };
   const total = orders.reduce(
@@ -69,6 +70,7 @@ export const Order = ({ orders, setOrders }) => {
                 key={index}
                 index={index}
                 deleteItem={deleteItem}
+                setOpenItem={setOpenItem}
               />
             ))}
           </OrderList>

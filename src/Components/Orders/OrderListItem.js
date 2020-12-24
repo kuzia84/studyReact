@@ -35,7 +35,7 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = ({ order, index, deleteItem }) => {
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
   const selectedTopping =
     order.topping &&
     order.topping
@@ -44,7 +44,15 @@ export const OrderListItem = ({ order, index, deleteItem }) => {
       .join(", ");
 
   return (
-    <OrderItemStyled>
+    <OrderItemStyled
+      onClick={(e) => {
+        const target = e.target;
+        if (target.matches("button")) {
+          return;
+        }
+        setOpenItem({ ...order, index });
+      }}
+    >
       <ItemName>
         {order.name} {order.choices}
         <ItemTopping>{selectedTopping}</ItemTopping>
