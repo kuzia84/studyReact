@@ -35,7 +35,7 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = ({ order }) => {
+export const OrderListItem = ({ order, index, deleteItem }) => {
   const selectedTopping =
     order.topping &&
     order.topping
@@ -46,12 +46,12 @@ export const OrderListItem = ({ order }) => {
   return (
     <OrderItemStyled>
       <ItemName>
-        {order.name}
+        {order.name} {order.choices}
         <ItemTopping>{selectedTopping}</ItemTopping>
       </ItemName>
       <span>{order.count}</span>
       <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-      <TrashButton />
+      <TrashButton onClick={() => deleteItem(index)} />
     </OrderItemStyled>
   );
 };

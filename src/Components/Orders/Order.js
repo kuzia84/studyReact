@@ -12,7 +12,8 @@ const OrderStyled = styled.section`
   top: 80px;
   left: 0;
   background: #fff;
-  min-width: 380px;
+  width: 100%;
+  max-width: 380px;
   height: calc(100% - 80px);
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.25);
   padding: 20px;
@@ -35,13 +36,18 @@ const Total = styled.div`
 const TotalPrice = styled.span`
   text-align: right;
   min-width: 65px;
-  margin-left: 20px;
+  margin-left: 15px;
 `;
 const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders }) => {
+export const Order = ({ orders, setOrders }) => {
+  const deleteItem = (index) => {
+    const newOrder = [...orders];
+    newOrder.splice(index, 1);
+    setOrders(newOrder);
+  };
   const total = orders.reduce(
     (result, order) => result + totalPriceItems(order),
     0
@@ -50,14 +56,20 @@ export const Order = ({ orders }) => {
     (result, order) => result + order.count,
     0
   );
+
   return (
     <OrderStyled>
       <OrderTitle>ВАШ ЗАКАЗ</OrderTitle>
       <OrderContent>
         {orders.length ? (
           <OrderList>
-            {orders.map((order) => (
-              <OrderListItem order={order} />
+            {orders.map((order, index) => (
+              <OrderListItem
+                order={order}
+                key={index}
+                index={index}
+                deleteItem={deleteItem}
+              />
             ))}
           </OrderList>
         ) : (
