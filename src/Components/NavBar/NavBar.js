@@ -37,13 +37,39 @@ const Login = styled.button`
   color: white;
   background: url(${loginImg}) 50% 0 no-repeat;
 `;
+const User = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+`;
+const LogOut = styled.span`
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 30px;
+`;
+const Figure = styled.figure`
+  margin: 0 30px;
+`;
 
-export const NavBar = () => (
+export const NavBar = ({ authentification, logIn, logOut }) => (
   <NavBarStyled>
     <Logo>
       <ImgLogo src={logoImg} alt="logo" />
       <H1>MrBonald's</H1>
     </Logo>
-    <Login>Войти</Login>
+    {authentification ? (
+      <User>
+        <Figure>
+          <img src={loginImg} alt={authentification.displayName} />
+          <figcaption>{authentification.displayName}</figcaption>
+        </Figure>
+        <LogOut title="Выйти" onClick={logOut}>
+          X
+        </LogOut>
+      </User>
+    ) : (
+      <Login onClick={logIn}>Войти</Login>
+    )}
   </NavBarStyled>
 );

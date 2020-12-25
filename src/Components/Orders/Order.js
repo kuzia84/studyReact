@@ -42,7 +42,13 @@ const EmptyList = styled.p`
   text-align: center;
 `;
 
-export const Order = ({ orders, setOrders, setOpenItem }) => {
+export const Order = ({
+  orders,
+  setOrders,
+  setOpenItem,
+  authentification,
+  logIn,
+}) => {
   const deleteItem = (index) => {
     // const newOrder = [...orders];
     // newOrder.splice(index, 1);
@@ -57,6 +63,8 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
     (result, order) => result + order.count,
     0
   );
+  const checkOut = () =>
+    authentification ? console.log("Заказ", orders) : logIn();
 
   return (
     <OrderStyled>
@@ -83,7 +91,9 @@ export const Order = ({ orders, setOrders, setOpenItem }) => {
         <span>{totalCounter}</span>
         <TotalPrice>{formatCurrency(total)}</TotalPrice>
       </Total>
-      <ButtonGreen type="button">Оформить</ButtonGreen>
+      <ButtonGreen type="button" onClick={checkOut}>
+        Оформить
+      </ButtonGreen>
     </OrderStyled>
   );
 };
