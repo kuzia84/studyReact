@@ -14,6 +14,8 @@ import { useAuth } from "./Components/Hooks/useAuth";
 const firebaseConfig = {
   apiKey: "AIzaSyCy24hxwnmYWHDLqlrfz4GUhNSJa2P-WY0",
   authDomain: "mrdonats-24a4b.firebaseapp.com",
+  databaseURL:
+    "https://mrdonats-24a4b-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "mrdonats-24a4b",
   storageBucket: "mrdonats-24a4b.appspot.com",
   messagingSenderId: "191239083704",
