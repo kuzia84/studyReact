@@ -7,6 +7,7 @@ import { Choices } from "./Choices";
 import { useCount } from "../Hooks/useCount";
 import { useToppings } from "../Hooks/useToppings";
 import { useChoices } from "../Hooks/useChoices";
+import { useTitle } from "../Hooks/useTitle";
 import { totalPriceItems } from "../Functions/secondaryFunction";
 import { formatCurrency } from "../Functions/secondaryFunction";
 
@@ -62,6 +63,7 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   const toppings = useToppings(openItem);
   const choices = useChoices(openItem);
   const isEdit = openItem.index > -1;
+  useTitle(openItem.name);
 
   const closeModal = (e) => {
     if (e.target.id === "overlay") {

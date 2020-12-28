@@ -8,7 +8,7 @@ export function useAuth(authFirebase) {
   const logOut = () => auth.signOut().catch((err) => console.log(err));
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         setAuthentification(user);
       } else {

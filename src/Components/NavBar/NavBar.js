@@ -50,26 +50,36 @@ const LogOut = styled.span`
 `;
 const Figure = styled.figure`
   margin: 0 30px;
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
 `;
 
-export const NavBar = ({ authentification, logIn, logOut }) => (
-  <NavBarStyled>
-    <Logo>
-      <ImgLogo src={logoImg} alt="logo" />
-      <H1>MrBonald's</H1>
-    </Logo>
-    {authentification ? (
-      <User>
-        <Figure>
-          <img src={loginImg} alt={authentification.displayName} />
-          <figcaption>{authentification.displayName}</figcaption>
-        </Figure>
-        <LogOut title="Выйти" onClick={logOut}>
-          X
-        </LogOut>
-      </User>
-    ) : (
-      <Login onClick={logIn}>Войти</Login>
-    )}
-  </NavBarStyled>
-);
+export const NavBar = ({ authentification, logIn, logOut }) => {
+  return (
+    <NavBarStyled>
+      <Logo>
+        <ImgLogo src={logoImg} alt="logo" />
+        <H1>MrBonald's</H1>
+      </Logo>
+      {authentification ? (
+        <User>
+          <Figure>
+            <img
+              src={authentification.photoURL}
+              alt={authentification.displayName}
+            />
+            <figcaption>{authentification.displayName}</figcaption>
+          </Figure>
+          <LogOut title="Выйти" onClick={logOut}>
+            X
+          </LogOut>
+        </User>
+      ) : (
+        <Login onClick={logIn}>Войти</Login>
+      )}
+    </NavBarStyled>
+  );
+};
