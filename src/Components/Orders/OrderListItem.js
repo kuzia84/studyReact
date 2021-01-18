@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import trashImage from "../../images/trash.svg";
 import { totalPriceItems } from "../Functions/secondaryFunction";
 import { formatCurrency } from "../Functions/secondaryFunction";
+import { Context } from "../Functions/context";
 
 const TrashButton = styled.button`
   width: 24px;
@@ -36,7 +37,10 @@ const ItemPrice = styled.span`
   text-align: right;
 `;
 
-export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
+export const OrderListItem = ({ order, index, deleteItem }) => {
+  const {
+    openItem: { setOpenItem },
+  } = useContext(Context);
   const selectedTopping =
     order.topping &&
     order.topping

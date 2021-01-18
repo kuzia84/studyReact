@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { Context } from "../Functions/context";
+import { ContextItem } from "../Functions/contextItem";
 
 const ChoicesWrap = styled.div`
   max-width: 500px;
@@ -23,7 +25,13 @@ const ChoicesRadio = styled.input`
   vertical-align: top;
 `;
 
-export function Choices({ openItem, choice, changeChoices }) {
+export function Choices() {
+  const {
+    choices: { choice, changeChoices },
+  } = useContext(ContextItem);
+  const {
+    openItem: { openItem },
+  } = useContext(Context);
   return (
     <>
       <h3>Выберите</h3>

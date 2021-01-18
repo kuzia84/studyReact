@@ -18,7 +18,7 @@ const Loader = styled.div`
   height: 100%;
 `;
 
-export const Menu = ({ setOpenItem }) => {
+export const Menu = () => {
   const res = useFetch();
   const dbMenu = res.response;
   return (
@@ -28,12 +28,12 @@ export const Menu = ({ setOpenItem }) => {
         <>
           <Section>
             <h2>Бургеры</h2>
-            <ListItem itemList={dbMenu.burger} setOpenItem={setOpenItem} />
+            <ListItem itemList={dbMenu.burger} />
           </Section>
 
           <Section>
             <h2>Закуски / Напитки</h2>
-            <ListItem itemList={dbMenu.other} setOpenItem={setOpenItem} />
+            <ListItem itemList={dbMenu.other} />
           </Section>
         </>
       ) : res.error ? (
